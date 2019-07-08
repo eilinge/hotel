@@ -1,11 +1,8 @@
 [common]
 port = ":8086"
-[db]
-driver  = "mysql"
-connstr = "root:tester@tcp(127.0.0.1:3306)/copyright?charset=utf8"
 [eth]
 connstr = "http://localhost:8545"
 keydir = "../../data/keystore"
-fundation = "0x839ce39c7942e33280daede63598c26170bc0d30"
-hotelAddr = "0x738e058e45da33239c5956553eaf3a1a5e7e3191"
+fundation = "0x48754c41cb92bc97b28e6a252841bc215caacc4b"
+hotelAddr = "0xe399c0230f571c6b03715efe35ebd6f487f21b15"
 fundationPWD = "eilinge"

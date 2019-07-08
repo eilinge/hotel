@@ -18,7 +18,6 @@ var (
 // ServerConfig ...
 type ServerConfig struct {
 	Common *CommonConfig
-	Db     *DbConfig
 	Eth    *EthConfig
 }
 
@@ -26,12 +25,6 @@ type ServerConfig struct {
 type CommonConfig struct {
 	Port      string
 	LogFormat string
-}
-
-// DbConfig  ...
-type DbConfig struct {
-	Driver  string
-	Connstr string
 }
 
 // EthConfig ...

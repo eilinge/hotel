@@ -4,10 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"go-echo/dbs"
 	"reflect"
 	"strconv"
-	"time"
 
 	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/common"
@@ -80,28 +78,19 @@ func ParseMintEventDb1(data []byte) error {
 		return err
 	}
 	fmt.Println("tokenID===", tokenID)
-	var pixHash string
-	err = LogDataUnpack(32*0, 32*2, &pixHash, data)
+	var hotelHash string
+	err = LogDataUnpack(32*0, 32*2, &hotelHash, data)
 	if err != nil {
 		return err
 	}
-	fmt.Println("pixHash===", pixHash)
-	var pixAddr string
-	err = LogDataUnpack(32*3-8, 32*4, &pixAddr, data)
+	fmt.Println("hotelHash===", hotelHash)
+	var hotelAddr string
+	err = LogDataUnpack(32*3-8, 32*4, &hotelAddr, data)
 	if err != nil {
 		return err
 	}
-	pixAddr = "0x" + pixAddr
-	fmt.Println("pixAddr===", pixAddr)
-	//插入到数据库中
-	b := []byte(time.Now().Format(defaultFormat))
-	ts := string(b[:len(b)-3])
-	sql := fmt.Sprintf("insert into account_content(content_hash,token_id,address) values('%s',%d,'%s', '%s')", pixHash, tokenID, pixAddr, ts)
-	_, err = dbs.Create(sql)
-	if err != nil {
-		fmt.Println("failed to insert into mysql ", sql, err)
-		return err
-	}
+	hotelAddr = "0x" + hotelAddr
+	fmt.Println("hotelAddr===", hotelAddr)
 	return nil
 }
 
@@ -112,21 +101,15 @@ func ParseMintEventDb(data []byte) error {
 	tokenID, _ = strconv.ParseInt(string(data[32*5:32*6]), 16, 32)
 	fmt.Println("tokenID===", tokenID)
 
-	var pixHash string
-	pixHash = string(data[0 : 32*2])
-	fmt.Println("pixHash===", pixHash)
+	var hotelHash string
+	hotelHash = string(data[0 : 32*2])
+	fmt.Println("hotelHash===", hotelHash)
 
-	var pixAddr string
-	pixAddr = string(data[32*3-8 : 32*4])
-	pixAddr = "0x" + pixAddr
-	fmt.Println("pixAddr===", pixAddr)
-	// 插入到用户资产(account_content)数据库中
-	sql := fmt.Sprintf("insert into account_content(content_hash,token_id,address) values('%s',%d,'%s')", pixHash, tokenID, pixAddr)
-	_, err := dbs.Create(sql)
-	if err != nil {
-		fmt.Println("failed to insert into mysql ", sql, err)
-		return err
-	}
+	var hotelAddr string
+	hotelAddr = string(data[32*3-8 : 32*4])
+	hotelAddr = "0x" + hotelAddr
+	fmt.Println("hotelAddr===", hotelAddr)
+
 	return nil
 }
 

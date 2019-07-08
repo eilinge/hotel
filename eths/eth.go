@@ -3,8 +3,8 @@ package eths
 import (
 	"context"
 	"fmt"
-	"go-echo/configs"
-	"go-echo/utils"
+	"go-hotel/configs"
+	"go-hotel/utils"
 	"math/big"
 	"os"
 
@@ -42,18 +42,24 @@ func NewAcc(pass, connstr string) (string, error) {
 	return account, err
 }
 
-// Upload ...
-func Upload(from, pass, hash, name string, age int64, record bool) error {
+// ConnectEth ...
+func ConnectEth() (instance *Hotel) {
 	cli, err := ethclient.Dial(configs.Config.Eth.Connstr)
 	if err != nil {
 		fmt.Println("failed to ethclient.Dial", err)
-		return err
+		return
 	}
-	instance, err := NewHotel(common.HexToAddress(configs.Config.Eth.HotelAddr), cli)
+	instance, err = NewHotel(common.HexToAddress(configs.Config.Eth.HotelAddr), cli)
 	if err != nil {
 		fmt.Println("failed to eths.NewHotel", err)
-		return err
+		return
 	}
+	return
+}
+
+// Upload ...
+func Upload(from, pass, hash, name string, age int64, record bool) error {
+	instance := ConnectEth()
 	// 设置签名, owner的keyStore文件
 	// 需要获得文件名字
 	fileName, err := utils.GetFileName(string([]rune(from)[2:]), configs.Config.Eth.Keydir)
@@ -115,4 +121,26 @@ func EventSubscribeTest(connstr, contractAddr string) error {
 			ParseMintEventDb([]byte(common.Bytes2Hex(vLog.Data)))
 		}
 	}
+}
+
+// CheckReward ...
+func CheckReward(idcard string) (age int64, status bool, err error) {
+	cli, err := ethclient.Dial(configs.Config.Eth.Connstr)
+	if err != nil {
+		fmt.Println("failed to ethclient.Dial", err)
+		return
+	}
+	instance, err := NewHotel(common.HexToAddress(configs.Config.Eth.HotelAddr), cli)
+	if err != nil {
+		fmt.Println("failed to eths.NewHotel", err)
+		return
+	}
+	guesterID, err := instance.CheckGuest(nil, common.HexToHash(idcard))
+	if err != nil {
+		fmt.Println("failed to instance.checkGuest ...", err)
+	}
+	guester, _ := instance.Assets(nil, guesterID)
+	status = guester.CriminalRecord
+	age = guester.Age.Int64()
+	return
 }

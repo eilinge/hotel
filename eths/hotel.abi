@@ -1,5 +1,24 @@
 [
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "getApproved",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
@@ -12,6 +31,50 @@
 			}
 		],
 		"name": "approve",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_to",
+				"type": "address"
+			},
+			{
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -44,51 +107,60 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "_from",
-				"type": "address"
-			},
+				"name": "_idcord",
+				"type": "bytes32"
+			}
+		],
+		"name": "checkGuest",
+		"outputs": [
 			{
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"name": "_tokenId",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_to",
-				"type": "address"
-			},
 			{
 				"name": "_tokenId",
 				"type": "uint256"
-			},
-			{
-				"name": "_data",
-				"type": "bytes"
 			}
 		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"name": "ownerOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -123,12 +195,84 @@
 			{
 				"name": "_tokenId",
 				"type": "uint256"
+			},
+			{
+				"name": "_data",
+				"type": "bytes"
 			}
 		],
-		"name": "transferFrom",
+		"name": "safeTransferFrom",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "assets",
+		"outputs": [
+			{
+				"name": "IDcord",
+				"type": "bytes32"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "age",
+				"type": "uint256"
+			},
+			{
+				"name": "criminalRecord",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "fundation",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"name": "_operator",
+				"type": "address"
+			}
+		],
+		"name": "isApprovedForAll",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -224,130 +368,5 @@
 		],
 		"name": "ApprovalForAll",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "assets",
-		"outputs": [
-			{
-				"name": "IDcord",
-				"type": "bytes32"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "age",
-				"type": "uint256"
-			},
-			{
-				"name": "criminalRecord",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "fundation",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "getApproved",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"name": "_operator",
-				"type": "address"
-			}
-		],
-		"name": "isApprovedForAll",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "_tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "ownerOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]

@@ -15,8 +15,20 @@ import (
 	"github.com/ethereum/go-ethereum/event"
 )
 
+// Reference imports to suppress errors if they are not otherwise used.
+var (
+	_ = big.NewInt
+	_ = strings.NewReader
+	_ = ethereum.NotFound
+	_ = abi.U256
+	_ = bind.Bind
+	_ = common.Big1
+	_ = types.BloomLookup
+	_ = event.NewSubscription
+)
+
 // HotelABI is the input ABI used to generate the binding from.
-const HotelABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"_approved\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_idcord\",\"type\":\"bytes32\"},{\"name\":\"_name\",\"type\":\"string\"},{\"name\":\"_age\",\"type\":\"uint256\"},{\"name\":\"_bool\",\"type\":\"bool\"}],\"name\":\"mint\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_operator\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_idcord\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"onNewAsset\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_approved\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_operator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"assets\",\"outputs\":[{\"name\":\"IDcord\",\"type\":\"bytes32\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"criminalRecord\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"fundation\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const HotelABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"getApproved\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_approved\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_idcord\",\"type\":\"bytes32\"},{\"name\":\"_name\",\"type\":\"string\"},{\"name\":\"_age\",\"type\":\"uint256\"},{\"name\":\"_bool\",\"type\":\"bool\"}],\"name\":\"mint\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_idcord\",\"type\":\"bytes32\"}],\"name\":\"checkGuest\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"ownerOf\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_operator\",\"type\":\"address\"},{\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"name\":\"_data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"assets\",\"outputs\":[{\"name\":\"IDcord\",\"type\":\"bytes32\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"uint256\"},{\"name\":\"criminalRecord\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"fundation\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"_idcord\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"onNewAsset\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_to\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_approved\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"_owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"_operator\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"}]"
 
 // Hotel is an auto generated Go binding around an Ethereum contract.
 type Hotel struct {
@@ -228,6 +240,32 @@ func (_Hotel *HotelSession) BalanceOf(_owner common.Address) (*big.Int, error) {
 // Solidity: function balanceOf(_owner address) constant returns(uint256)
 func (_Hotel *HotelCallerSession) BalanceOf(_owner common.Address) (*big.Int, error) {
 	return _Hotel.Contract.BalanceOf(&_Hotel.CallOpts, _owner)
+}
+
+// CheckGuest is a free data retrieval call binding the contract method 0x5d88e5c7.
+//
+// Solidity: function checkGuest(_idcord bytes32) constant returns(uint256)
+func (_Hotel *HotelCaller) CheckGuest(opts *bind.CallOpts, _idcord [32]byte) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _Hotel.contract.Call(opts, out, "checkGuest", _idcord)
+	return *ret0, err
+}
+
+// CheckGuest is a free data retrieval call binding the contract method 0x5d88e5c7.
+//
+// Solidity: function checkGuest(_idcord bytes32) constant returns(uint256)
+func (_Hotel *HotelSession) CheckGuest(_idcord [32]byte) (*big.Int, error) {
+	return _Hotel.Contract.CheckGuest(&_Hotel.CallOpts, _idcord)
+}
+
+// CheckGuest is a free data retrieval call binding the contract method 0x5d88e5c7.
+//
+// Solidity: function checkGuest(_idcord bytes32) constant returns(uint256)
+func (_Hotel *HotelCallerSession) CheckGuest(_idcord [32]byte) (*big.Int, error) {
+	return _Hotel.Contract.CheckGuest(&_Hotel.CallOpts, _idcord)
 }
 
 // Fundation is a free data retrieval call binding the contract method 0xe0a9be75.
@@ -516,7 +554,7 @@ type HotelApproval struct {
 
 // FilterApproval is a free log retrieval operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
-// Solidity: event Approval(_owner indexed address, _approved indexed address, _tokenId indexed uint256)
+// Solidity: e Approval(_owner indexed address, _approved indexed address, _tokenId indexed uint256)
 func (_Hotel *HotelFilterer) FilterApproval(opts *bind.FilterOpts, _owner []common.Address, _approved []common.Address, _tokenId []*big.Int) (*HotelApprovalIterator, error) {
 
 	var _ownerRule []interface{}
@@ -541,7 +579,7 @@ func (_Hotel *HotelFilterer) FilterApproval(opts *bind.FilterOpts, _owner []comm
 
 // WatchApproval is a free log subscription operation binding the contract event 0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925.
 //
-// Solidity: event Approval(_owner indexed address, _approved indexed address, _tokenId indexed uint256)
+// Solidity: e Approval(_owner indexed address, _approved indexed address, _tokenId indexed uint256)
 func (_Hotel *HotelFilterer) WatchApproval(opts *bind.WatchOpts, sink chan<- *HotelApproval, _owner []common.Address, _approved []common.Address, _tokenId []*big.Int) (event.Subscription, error) {
 
 	var _ownerRule []interface{}
@@ -666,7 +704,7 @@ type HotelApprovalForAll struct {
 
 // FilterApprovalForAll is a free log retrieval operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
-// Solidity: event ApprovalForAll(_owner indexed address, _operator indexed address, _approved bool)
+// Solidity: e ApprovalForAll(_owner indexed address, _operator indexed address, _approved bool)
 func (_Hotel *HotelFilterer) FilterApprovalForAll(opts *bind.FilterOpts, _owner []common.Address, _operator []common.Address) (*HotelApprovalForAllIterator, error) {
 
 	var _ownerRule []interface{}
@@ -687,7 +725,7 @@ func (_Hotel *HotelFilterer) FilterApprovalForAll(opts *bind.FilterOpts, _owner 
 
 // WatchApprovalForAll is a free log subscription operation binding the contract event 0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31.
 //
-// Solidity: event ApprovalForAll(_owner indexed address, _operator indexed address, _approved bool)
+// Solidity: e ApprovalForAll(_owner indexed address, _operator indexed address, _approved bool)
 func (_Hotel *HotelFilterer) WatchApprovalForAll(opts *bind.WatchOpts, sink chan<- *HotelApprovalForAll, _owner []common.Address, _operator []common.Address) (event.Subscription, error) {
 
 	var _ownerRule []interface{}
@@ -808,7 +846,7 @@ type HotelTransfer struct {
 
 // FilterTransfer is a free log retrieval operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
-// Solidity: event Transfer(_from indexed address, _to indexed address, _tokenId indexed uint256)
+// Solidity: e Transfer(_from indexed address, _to indexed address, _tokenId indexed uint256)
 func (_Hotel *HotelFilterer) FilterTransfer(opts *bind.FilterOpts, _from []common.Address, _to []common.Address, _tokenId []*big.Int) (*HotelTransferIterator, error) {
 
 	var _fromRule []interface{}
@@ -833,7 +871,7 @@ func (_Hotel *HotelFilterer) FilterTransfer(opts *bind.FilterOpts, _from []commo
 
 // WatchTransfer is a free log subscription operation binding the contract event 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef.
 //
-// Solidity: event Transfer(_from indexed address, _to indexed address, _tokenId indexed uint256)
+// Solidity: e Transfer(_from indexed address, _to indexed address, _tokenId indexed uint256)
 func (_Hotel *HotelFilterer) WatchTransfer(opts *bind.WatchOpts, sink chan<- *HotelTransfer, _from []common.Address, _to []common.Address, _tokenId []*big.Int) (event.Subscription, error) {
 
 	var _fromRule []interface{}
@@ -958,7 +996,7 @@ type HotelOnNewAsset struct {
 
 // FilterOnNewAsset is a free log retrieval operation binding the contract event 0x656ff40b8e1f65ac976060cda3f8f3e146ac6bb0421c1fe1010c92c350e57db3.
 //
-// Solidity: event onNewAsset(_idcord bytes32, _owner address, _tokenId uint256)
+// Solidity: e onNewAsset(_idcord bytes32, _owner address, _tokenId uint256)
 func (_Hotel *HotelFilterer) FilterOnNewAsset(opts *bind.FilterOpts) (*HotelOnNewAssetIterator, error) {
 
 	logs, sub, err := _Hotel.contract.FilterLogs(opts, "onNewAsset")
@@ -970,7 +1008,7 @@ func (_Hotel *HotelFilterer) FilterOnNewAsset(opts *bind.FilterOpts) (*HotelOnNe
 
 // WatchOnNewAsset is a free log subscription operation binding the contract event 0x656ff40b8e1f65ac976060cda3f8f3e146ac6bb0421c1fe1010c92c350e57db3.
 //
-// Solidity: event onNewAsset(_idcord bytes32, _owner address, _tokenId uint256)
+// Solidity: e onNewAsset(_idcord bytes32, _owner address, _tokenId uint256)
 func (_Hotel *HotelFilterer) WatchOnNewAsset(opts *bind.WatchOpts, sink chan<- *HotelOnNewAsset) (event.Subscription, error) {
 
 	logs, sub, err := _Hotel.contract.WatchLogs(opts, "onNewAsset")
